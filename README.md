@@ -11,8 +11,11 @@ It will have the following features:
 * Implement a GUI that shows the resulting video, and
 * Configure a webcam and have DingTalk/Zoom/WeMeet connect to it
 
-Due to my platform limitation, this project will be available for **Windows Only**.
+### Notices
+1. Due to my platform limitation, this project will be available for **Windows Only**.
 Feel free to fork this repository and implement support for other platforms ;)
+2. Due to some unknown problems with `sys.exit()`, the program may not exit correctly when pressing `q` or `x`.
+In this scenario, please kill the process manually.
 
 ## How?
 I will be using **Python 3.7** and the following libraries:
