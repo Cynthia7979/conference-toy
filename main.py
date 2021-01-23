@@ -52,9 +52,6 @@ def main():
 
 
 def show_main_gui(frame, width, height):
-    # gui_background = np.zeros((height, width, 4), np.uint8)  # Who in the world would use (h, w, d)???
-    # gui_background[:,:,:] = 0
-
     # Source operations
     frame = flip(frame, 1)
 
