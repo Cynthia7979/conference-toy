@@ -21,6 +21,7 @@ In this scenario, please kill the process manually.
 I will be using **Python 3.7** and the following libraries:
 * [opencv-python](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_gui/py_video_display/py_video_display.html)
 * [pyvirtualcam](https://github.com/letmaik/pyvirtualcam)
+* Tkinter
 
 ## Where (did resources come from)?
 * **pigegon.png** [Google Search](https://www.google.com/url?sa=i&url=http%3A%2F%2Fclipart-library.com%2Fpigeon-cliparts.html&psig=AOvVaw12HzEyabJbPaVXrRQSnXeL&ust=1611397156736000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCPjsitOor-4CFQAAAAAdAAAAABAD)
