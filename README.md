@@ -1,7 +1,9 @@
 # Conference-Toy
 Make video conference your toy!
 
-## [TUTORIAL, aka How To Prevent Crashing](https://github.com/Cynthia7979/conference-toy/blob/main/no-crashing.md)
+**[Latest Release](https://github.com/Cynthia7979/conference-toy/releases/tag/v1.0)**
+
+[Tutorial, AKA How To Prevent Crashing](https://github.com/Cynthia7979/conference-toy/blob/main/no-crashing.md)
 
 ## What?
 This project aims to make a tool that can change your appearance on a video conference.
@@ -27,7 +29,9 @@ I will be using **Python 3.7** and the following libraries:
 * `Tkinter` for file selection
 * `pillow` for jpeg reading
 * `numpy`
+* `pyinstaller` for packaging (NOT included in `requirements.txt`)
 
 ## Where (did resources come from)?
 * **pigegon.png** [Google Search](https://www.google.com/url?sa=i&url=http%3A%2F%2Fclipart-library.com%2Fpigeon-cliparts.html&psig=AOvVaw12HzEyabJbPaVXrRQSnXeL&ust=1611397156736000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCPjsitOor-4CFQAAAAAdAAAAABAD)
-* **mopemope.jpg** Screenshot by myself
+* **mopemope.jpg** Screenshot by me
+* **Everything else** Drawn/edited by me with [Krita](http://krita.org). Some online resources used.
