@@ -11,7 +11,7 @@ installed!** This project is partially based on them.
 To do this, choose `OBS-Camera` as your camera in the meeting app.
 4. If everything's set, feel free to add some accessories (stickers) by clicking the button. 
 If the program crashes, check if you:
-    * Used images that're **larger** your camera dimensions. The matrix operation cannot do that, and my 
+    * Used images that're **larger than** your camera dimensions. The matrix operation cannot do that, and my 
 solution has some bugs.
 5. Also, **close your camera in the meeting** when starting/restarting the program to prevent conflict. You may open it afterwards.
 
