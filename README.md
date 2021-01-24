@@ -1,6 +1,8 @@
 # Conference-Toy
 Make video conference your toy!
 
+## [TUTORIAL, aka How To Prevent Crashing](https://github.com/Cynthia7979/conference-toy/blob/main/no-crashing.md)
+
 ## What?
 This project aims to make a tool that can change your appearance on a video conference.
 

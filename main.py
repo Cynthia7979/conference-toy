@@ -88,14 +88,14 @@ def show_main_gui(frame, width, height):
 
     # Button 1 "Hide GUI"
     # Display
-    button_1_topleft = (width-BUTTON_MARGIN-147, BUTTON_MARGIN)
+    button_1_topleft = (width-BUTTON_MARGIN-250, BUTTON_MARGIN)
     button_1_bottomright = (width-BUTTON_MARGIN, BUTTON_MARGIN+35)
     frame = rectangle(frame,
                       button_1_topleft,
                       button_1_bottomright,
                       color=WHITE, thickness=-1)
-    putText(frame, 'Hide GUI',
-            (width-BUTTON_MARGIN-147+TEXT_MARGIN, BUTTON_MARGIN+35-TEXT_MARGIN),
+    putText(frame, 'Hide/Show GUI',
+            (width-BUTTON_MARGIN-250+TEXT_MARGIN, BUTTON_MARGIN+35-TEXT_MARGIN),
             FONT, fontScale=1, color=BLACK, thickness=2, lineType=LINE_AA)
     # Interactions
     add_click_callback(button_1_topleft, button_1_bottomright, toggle_gui)
@@ -117,17 +117,31 @@ def show_main_gui(frame, width, height):
 
         # Button 3 Set/Remove Still Frame
         # Display
-        button_3_topleft = (BUTTON_MARGIN, BUTTON_MARGIN + (BUTTON_MARGIN+35))
-        button_3_bottomright = (BUTTON_MARGIN+400, BUTTON_MARGIN+35 + (BUTTON_MARGIN+35))
+        button_3_topleft = (BUTTON_MARGIN, 2*BUTTON_MARGIN+35)
+        button_3_bottomright = (BUTTON_MARGIN+400, 2*BUTTON_MARGIN+2*35)
         frame = rectangle(frame,
                           button_3_topleft,
                           button_3_bottomright,
                           color=WHITE, thickness=-1)
         putText(frame, 'Set/Remove Still Frame',
-                (BUTTON_MARGIN+TEXT_MARGIN, BUTTON_MARGIN+35-TEXT_MARGIN + (BUTTON_MARGIN+35)),
+                (BUTTON_MARGIN+TEXT_MARGIN, 2*BUTTON_MARGIN+2*35-TEXT_MARGIN),
                 FONT, fontScale=1, color=BLACK, thickness=2, lineType=LINE_AA)
-        #Interactions
-        add_click_callback(button_3_topleft, button_3_bottomright, lambda: add_frame_placeholder(width, height))
+        # Interactions
+        add_click_callback(button_3_topleft, button_3_bottomright, lambda: add_or_remove_frame_placeholder(width, height))
+
+        # Button 4 Remove All Accessories
+        # Display
+        button_4_topleft = (BUTTON_MARGIN, 3*BUTTON_MARGIN+2*35)
+        button_4_bottomright = (BUTTON_MARGIN + 400, 3*BUTTON_MARGIN+3*35)
+        frame = rectangle(frame,
+                          button_4_topleft,
+                          button_4_bottomright,
+                          color=WHITE, thickness=-1)
+        putText(frame, 'Remove Accessories',
+                (BUTTON_MARGIN + TEXT_MARGIN, 3*BUTTON_MARGIN+3*35-TEXT_MARGIN),
+                FONT, fontScale=1, color=BLACK, thickness=2, lineType=LINE_AA)
+        # Interactions
+        add_click_callback(button_4_topleft, button_4_bottomright, remove_all_accessories)
 
     imshow(MAIN_WINDOW_NAME, frame)
 
@@ -196,7 +210,6 @@ def add_accessory(frame):
             accessory_img = resize(accessory_img, (new_width, new_height))
             (x2, y2) = (new_width, new_height)
 
-
         topleft = (0, 0)
         bottomright = (x2, y2)
         globals()['image_map'].append(accessory_img)
@@ -207,16 +220,23 @@ def add_accessory(frame):
         print('Added accessory from', file_path)
 
 
-def add_frame_placeholder(width, height):
-    print('Adding placeholder frame')
-    file_path = askopenfilename(filetypes=[('images', '.jpg .png')])
-    if file_path:
-        # accessory_img = imread(file_path, IMREAD_UNCHANGED)
-        placeholder_img = Image.open(file_path).convert('RGBA')
-        placeholder_img = np.array(placeholder_img)
-        placeholder_img = cvtColor(placeholder_img, COLOR_RGBA2BGRA)
-        placeholder_img = resize(placeholder_img, (width, height))
-        globals()['frame_placeholder'] = placeholder_img
+def remove_all_accessories():
+    globals()['accessories'] = {}
+
+
+def add_or_remove_frame_placeholder(width, height):
+    if globals()['frame_placeholder'] is None:
+        print('Adding placeholder frame')
+        file_path = askopenfilename(filetypes=[('images', '.jpg .png')])
+        if file_path:
+            # accessory_img = imread(file_path, IMREAD_UNCHANGED)
+            placeholder_img = Image.open(file_path).convert('RGBA')
+            placeholder_img = np.array(placeholder_img)
+            placeholder_img = cvtColor(placeholder_img, COLOR_RGBA2BGRA)
+            placeholder_img = resize(placeholder_img, (width, height))
+            globals()['frame_placeholder'] = placeholder_img
+    else:
+        globals()['frame_placeholder'] = None
 
 
 def register_moving_accessory(accessory_index):
