@@ -5,11 +5,12 @@ Make video conference your toy!
 This project aims to make a tool that can change your appearance on a video conference.
 
 It will have the following features:
-* Capture video from a specified camera,
-* Add accessories onto video, and/or
-* Make the video a still picture,
-* Implement a GUI that shows the resulting video, and
-* Configure a webcam and have DingTalk/Zoom/WeMeet connect to it
+- [x] Capture video from a specified camera,
+- [x] Add accessories onto video, and/or
+    * Moving/resizing accessories are not done yet
+- [ ] Make the video a still picture,
+- [x] Implement a GUI that shows the resulting video, and
+- [x] Configure a webcam and have DingTalk/Zoom/WeMeet connect to it
 
 ### Notices
 1. Due to my platform limitation, this project will be available for **Windows Only**.

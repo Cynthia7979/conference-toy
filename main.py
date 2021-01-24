@@ -35,6 +35,7 @@ def main():
     globals()['button_down_callbacks'] = {}
 
     globals()['gui_hidden'] = False
+    globals()['frame_placeholder'] = None
 
     globals()['accessories'] = {}
     globals()['image_map'] = []
@@ -53,7 +54,7 @@ def main():
 
     setMouseCallback(MAIN_WINDOW_NAME, mouse_callback)
 
-    with pyvirtualcam.Camera(width=width, height=height, fps=30) as cam:
+    with pyvirtualcam.Camera(width=width, height=height, fps=15) as cam:
         print('WebCam initiated')
 
         globals()['next_bottomleft'] = globals()['next_bottomright'] = height
@@ -62,7 +63,10 @@ def main():
             if cv2.waitKey(1) & 0xFF in (ord('q'), ord('x')):  # If quit
                 return
 
-            return_value, frame = VIDEO_CAPTURE.read()
+            if globals()['frame_placeholder'] is not None:
+                frame = globals()['frame_placeholder']
+            else:
+                return_value, frame = VIDEO_CAPTURE.read()
             show_main_gui(frame.copy(), width, height)
 
             for accessory_index in globals()['accessories'].keys():
@@ -77,6 +81,10 @@ def main():
 def show_main_gui(frame, width, height):
     # Source operations
     frame = flip(frame, 1)
+
+    # Accessories
+    for accessory_index in globals()['accessories'].keys():
+        frame = display_accessory(frame, accessory_index)
 
     # Button 1 "Hide GUI"
     # Display
@@ -119,10 +127,7 @@ def show_main_gui(frame, width, height):
                 (BUTTON_MARGIN+TEXT_MARGIN, BUTTON_MARGIN+35-TEXT_MARGIN + (BUTTON_MARGIN+35)),
                 FONT, fontScale=1, color=BLACK, thickness=2, lineType=LINE_AA)
         #Interactions
-
-    # Accessories
-    for accessory_index in globals()['accessories'].keys():
-        frame = display_accessory(frame, accessory_index)
+        add_click_callback(button_3_topleft, button_3_bottomright, lambda: add_frame_placeholder(width, height))
 
     imshow(MAIN_WINDOW_NAME, frame)
 
@@ -197,9 +202,21 @@ def add_accessory(frame):
         globals()['image_map'].append(accessory_img)
         accessory_index = len(globals()['image_map'])-1
         globals()['accessories'][accessory_index] = (topleft, bottomright)
-        globals()['button_down_callbacks'][(topleft, bottomright)] = lambda: register_moving_accessory(accessory_index)
-        globals()['button_up_callbacks'][(topleft, bottomright)] = lambda: unregister_moving_accessory(accessory_index)
+        # globals()['button_down_callbacks'][(topleft, bottomright)] = lambda: register_moving_accessory(accessory_index)
+        # globals()['button_up_callbacks'][(topleft, bottomright)] = lambda: unregister_moving_accessory(accessory_index)
         print('Added accessory from', file_path)
+
+
+def add_frame_placeholder(width, height):
+    print('Adding placeholder frame')
+    file_path = askopenfilename(filetypes=[('images', '.jpg .png')])
+    if file_path:
+        # accessory_img = imread(file_path, IMREAD_UNCHANGED)
+        placeholder_img = Image.open(file_path).convert('RGBA')
+        placeholder_img = np.array(placeholder_img)
+        placeholder_img = cvtColor(placeholder_img, COLOR_RGBA2BGRA)
+        placeholder_img = resize(placeholder_img, (width, height))
+        globals()['frame_placeholder'] = placeholder_img
 
 
 def register_moving_accessory(accessory_index):
