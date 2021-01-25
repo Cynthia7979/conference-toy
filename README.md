@@ -21,6 +21,7 @@ It will have the following features:
 Feel free to fork this repository and implement support for other platforms ;)
 2. Due to some unknown problems with `sys.exit()`, the program may not exit correctly when pressing `q` or `x`.
 In this scenario, please kill the process manually.
+	* If running the `exe` file, it is also ok to close the command prompt.
 
 ## How?
 I will be using **Python 3.7** and the following libraries:

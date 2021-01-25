@@ -15,4 +15,8 @@ If the program crashes, check if you:
 solution has some bugs.
 5. Also, **close your camera in the meeting** when starting/restarting the program to prevent conflict. You may open it afterwards.
 
+Because the accessories will be **fixed on the top-left corner** after adding, it is suggested to create a semitransparent 640x480
+`png` image with all accessories added onto it. Check `/resources/accessories/` for exmaples.
+* 640x480 is the default dimension of my camera. Your camera may require a larger or smaller dimension.
+
 If you met any problems that're not listed here, please [create an Issue](https://github.com/Cynthia7979/conference-toy/issues/new/choose)
